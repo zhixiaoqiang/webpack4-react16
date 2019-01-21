@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.base.js",
-    "watch": "webpack --config webpack.config.base.js -w",
-    "start": "webpack-dev-server --config webpack.config.base.js --process"
+    "build": "node --max_old_space_size=8192 webpack --config webpack.config.base.js --process",
+    "watch": "node --max_old_space_size=8192 webpack --config webpack.config.base.js -w",
+    "start": "node --max_old_space_size=8192 webpack-dev-server --config webpack.config.base.js --process"
   },
   "keywords": [],
   "author": "",
@@ -22,8 +22,12 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@rematch/core": "^1.0.6",
+    "antd": "^3.12.4",
+    "axios": "^0.18.0",
     "file-loader": "^3.0.1",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-image-lightbox-rotate-fixed": "^1.2.3"
   }
 }
