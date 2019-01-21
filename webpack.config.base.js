@@ -19,6 +19,16 @@ module.exports = {
     historyApiFallback: true, // 找不到路由的全到index.html
     hot: true
   },
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      components: path.join(__dirname, 'src/components'),
+      store: path.join(__dirname, 'src/store'),
+      model: path.join(__dirname, 'src/model'),
+      utils: path.join(__dirname, 'src/utils'),
+      '@': path.join(__dirname, 'src')
+    }
+  },
   module: {
     rules: [
       {
