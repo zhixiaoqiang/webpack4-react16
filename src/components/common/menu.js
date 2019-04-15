@@ -34,7 +34,6 @@ export default class CustomMenu extends Component {
         return (
           <SubMenu
             key={`SubMenu${index}`}
-            // title={<span><Icon type="mail" /><span>{item.name}</span></span>}
             title={<span>{item.name}</span>}
           >
             {this.renderMenuItemJSX(item.child)}

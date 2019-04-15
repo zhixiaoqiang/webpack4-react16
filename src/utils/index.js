@@ -1,6 +1,6 @@
 
 import { notification, message } from 'antd'
-import router from 'utils/history'
+import history from 'utils/history'
 
 
 /**
@@ -41,6 +41,6 @@ const zUrl = (url)  => {
 export default {
   notice,
   notify,
-  router,
+  history,
   zUrl
 }
