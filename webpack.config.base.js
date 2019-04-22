@@ -1,14 +1,15 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpackBar = require('webpackBar')
 module.exports = {
   entry: {
     index: './src/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js'],
@@ -18,6 +19,7 @@ module.exports = {
       constants: path.join(__dirname, 'src/constants'),
       store: path.join(__dirname, 'src/store'),
       model: path.join(__dirname, 'src/model'),
+      routes: path.join(__dirname, 'src/routes'),
       utils: path.join(__dirname, 'src/utils'),
       '@': path.join(__dirname, 'src')
     }
@@ -31,21 +33,23 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            // options: {
-            //   presets: [
-            //     '@babel/preset-env',
-            //     "@babel/preset-react"
-            //   ],
-            //   plugins: [
-            //     "@babel/plugin-transform-runtime",
-            //     ["import", {
-            //       "libraryName": "antd",
-            //       "libraryDirectory": "es",
-            //       "style": "css"
-            //     }]
-            //   ],
-            //   cacheDirectory: true
-            // }
+            options: {
+              presets: [
+                '@babel/preset-env',
+                "@babel/preset-react"
+              ],
+              plugins: [
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-syntax-dynamic-import",
+                "@babel/plugin-proposal-class-properties",
+                ["import", {
+                  "libraryName": "antd",
+                  "libraryDirectory": "es",
+                  "style": "css"
+                }]
+              ],
+              cacheDirectory: true
+            }
           }
         ]
       },
@@ -71,6 +75,8 @@ module.exports = {
     ]
   },
   plugins: [
+    // 进度条和分析器
+    new webpackBar(),
     new HtmlWebpackPlugin({
       title: 'webpack4-react16',
       hash: true,
@@ -83,7 +89,6 @@ module.exports = {
       }
     }),
     new webpack.HashedModuleIdsPlugin(),
-    // new CleanWebpackPlugin(['dist']),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
@@ -95,7 +100,7 @@ module.exports = {
   optimization: {
     minimize: process.env.NODE_ENV === 'production' ? true : false, // 开发环境不压缩
     runtimeChunk: 'single',
-    splitChunks: {
+    splitChunks: { // 将重复引用的包分离到单独文件，防止重复
       chunks: "async", // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
       minSize: 30000, // 模块超过30k自动被抽离成公共模块
       minChunks: 1, // 模块被引用>=1次，便分割

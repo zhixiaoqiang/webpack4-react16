@@ -8,7 +8,6 @@ const {
   Header, Footer, Sider, Content,
 } = Layout;
 
-
 export default class Index extends Component {
   render () {
     return (

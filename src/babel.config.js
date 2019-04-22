@@ -17,7 +17,7 @@ let presets = [
 
 let plugins = [
   "@babel/runtime",   // polyfill 文件的相关线上环境
-  "@babel/plugin-syntax-dynamic-import",
+  "@babel/plugin-syntax-dynamic-import", // 确保 Babel 能够解析 import() 而不是将其进行转换
   ["import", {  //  antd 的style 会按需引入
     "libraryName": "antd",
     "libraryDirectory": "es",

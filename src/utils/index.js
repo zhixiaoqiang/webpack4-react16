@@ -37,6 +37,12 @@ const zUrl = (url)  => {
   return '//zdev.dian.so' + url    // 开发用
 }
 
+export {
+  notice,
+  notify,
+  history,
+  zUrl
+}
 
 export default {
   notice,

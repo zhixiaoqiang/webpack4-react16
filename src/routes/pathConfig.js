@@ -1,14 +1,19 @@
 export default  [
   {
-    path: '/menu1-1',
-    src: 'count'
+    path: '/app',
+    src: 'temp1'
   },
   {
-   path: '/menu1-2',
-   src: 'view2'
+   path: '/app2',
+   src: 'temp2'
   },
   {
-   path: '/menu2',
-   src: 'layoutTest/layoutTest'
+   path: '/app3',
+   src: 'temp3'
+  },
+  {
+    title: '404 NOT FOUND',
+    path: '*',
+    src: 'temp3'
   }
  ]

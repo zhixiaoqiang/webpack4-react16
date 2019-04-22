@@ -1,6 +1,6 @@
 
 import { createBrowserHistory } from 'history'
-export const history = createBrowserHistory()
+const history = createBrowserHistory()
 
 // 对browserHistory二次封装
 const routerFilter =  (router) => {  
